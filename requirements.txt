@@ -1,0 +1,2 @@
+pytest-xdist==1.19.1
+pytest==3.2.1
