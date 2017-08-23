@@ -16,22 +16,24 @@ class DataAdapter:
         self.source = type(source)
         self.target = type(target)
 
-    def do(self, source):
+    def do(self, source, target=None):
         if self.source is type(Foo) and self.target is type(Bar):
-            return self.foo2bar(source)
+            return self._foo2bar(source, target)
 
         elif self.source is type(Bar) and self.target is type(Foo):
-            return self.bar2foo(source)
+            return self._bar2foo(source, target)
 
         else:
             print('no callings')
 
-    def foo2bar(self, source):
-        bar = Bar()
-        bar.full_name = source.name + ' ' + bar.last_name
-        return bar
+    def _foo2bar(self, source, target=None):
+        if target is None:
+            target = Bar()
+        target.full_name = source.name + ' ' + target.last_name
+        return target
 
-    def bar2foo(self, source):
-        foo = Foo()
-        foo.full_name = foo.name + ' ' + source.last_name
-        return foo
+    def _bar2foo(self, source, target=None):
+        if target is None:
+            target = Foo()
+        target.full_name = target.name + ' ' + source.last_name
+        return target
