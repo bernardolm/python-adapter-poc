@@ -11,5 +11,13 @@ class TestDataAdapter:
     def test_foo2bar(self):
         foo = Foo()
         foo.name = 'Test foo'
-        bar = DataAdapter(Foo, Bar).do(foo)
-        assert bar.full_name == 'Test foo Bar name'
+        actual = DataAdapter(Foo, Bar).do(foo)
+        assert actual.full_name == 'Test foo Bar name'
+
+    def test_foo2bar_1(self):
+        foo = Foo()
+        foo.name = 'Test foo'
+        bar = Bar()
+        bar.last_name = 'Test bar'
+        actual = DataAdapter(Foo, Bar).do(foo, bar)
+        assert actual.full_name == 'Test foo Test bar'
